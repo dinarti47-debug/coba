@@ -11,24 +11,24 @@
 </head>
 <body style="background: #06110b url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=80') center/cover fixed no-repeat; color: #f0fdf4;">
 
-  <!-- HEADER UTAMA (Suhu & Cuaca Tetap Ada Di Sini) -->
+<!-- HEADER UTAMA RESPONSIVE -->
 <header class="main-header">
     <div class="header-container">
-        <!-- LOGO & TOMBOL KUIS -->
+        <!-- GROUP 1: LOGO & TOMBOL KUIS -->
         <div class="brand-quiz-wrapper">
             <a href="index.html" class="brand-logo">
                 <img src="perhutanii.png" alt="Logo Perhutani">
                 <span class="brand-title">PERHUTANI KPH PEMALANG</span>
             </a>
 
-            <!-- TOMBOL KUIS DI SAMPING LOGO -->
+            <!-- TOMBOL KUIS RIMBA -->
             <button type="button" class="quiz-pill-btn" id="openQuizBtn">
                 <i class="fa-solid fa-gamepad"></i>
-                <span>Kuis Rimba</span>
+                <span class="quiz-btn-text">Kuis</span>
             </button>
         </div>
 
-        <!-- NAVIGASI DESKTOP -->
+        <!-- GROUP 2: NAVIGASI DESKTOP (HANYA LAPTOP) -->
         <nav class="premium-nav">
             <ul class="nav-list">
                 <li><a href="index.html" class="nav-link active">Beranda</a></li>
@@ -70,19 +70,92 @@
             </ul>
         </nav>
 
-        <!-- WIDGET CUACA AWAL (DIBIARKAN KEMBALI) -->
-        <div class="weather-widget">
-            <i class="fa-solid fa-cloud-sun weather-icon"></i>
-            <span class="weather-temp">27°C</span>
-            <span class="weather-location">Pemalang, ID</span>
-        </div>
+        <!-- GROUP 3: CUACA & HAMBURGER (KANAN HEADER) -->
+        <div class="header-right-action">
+            <!-- WIDGET CUACA AWAL (TAMPIL DI LAPTOP & HP) -->
+            <div class="weather-widget" id="weatherWidget">
+                <i class="fa-solid fa-cloud-sun weather-icon"></i>
+                <span class="weather-temp">27°C</span>
+                <span class="weather-location">Pemalang</span>
+            </div>
 
-        <!-- TOMBOL HAMBURGER (HP ONLY) -->
-        <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Buka Menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+            <!-- TOMBOL HAMBURGER MOBILE -->
+            <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Buka Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </div>
 </header>
+
+<!-- OVERLAY TRANSMISIF HITAM (TARUH SEBELUM </body>) -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+<!-- MOBILE DRAWER NAVIGATION (TARUH SEBELUM </body>) -->
+<aside class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-header">
+        <div class="mobile-brand">
+            <img src="perhutanii.png" alt="Logo Perhutani">
+            <span>PERHUTANI KPH PEMALANG</span>
+        </div>
+        <button type="button" class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Tutup Menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div class="mobile-drawer-body">
+        <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-link active"><i class="fa-solid fa-house"></i> Beranda</a></li>
+            
+            <li class="mobile-dropdown">
+                <button type="button" class="mobile-dropdown-btn">
+                    <span><i class="fa-solid fa-building"></i> Tentang Kami</span>
+                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </button>
+                <div class="mobile-submenu">
+                    <a href="tentangkami.html" class="sub-main">Utama: Tentang Kami</a>
+                    <a href="profil.html"><i class="fa-solid fa-id-card"></i> Profil Perusahaan</a>
+                    <a href="sejarah.html"><i class="fa-solid fa-clock-rotate-left"></i> Sejarah Perusahaan</a>
+                    <a href="tugasfungsi.html"><i class="fa-solid fa-list-check"></i> Tugas dan Fungsi</a>
+                    <a href="visimisitatanilai.html"><i class="fa-solid fa-compass"></i> Visi Misi & Tata Nilai</a>
+                    <a href="struktur.html"><i class="fa-solid fa-sitemap"></i> Struktur Organisasi</a>
+                    <a href="kepemilikansaham.html"><i class="fa-solid fa-chart-pie"></i> Kepemilikan Saham</a>
+                    <a href="program.html"><i class="fa-solid fa-list-dots"></i> Program Kerja</a>
+                </div>
+            </li>
+
+            <li class="mobile-dropdown">
+                <button type="button" class="mobile-dropdown-btn">
+                    <span><i class="fa-solid fa-briefcase"></i> Unit Bisnis</span>
+                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </button>
+                <div class="mobile-submenu">
+                    <a href="unitbisnis.html" class="sub-main">Utama: Unit Bisnis</a>
+                    <a href="kayu.html"><i class="fa-solid fa-tree"></i> Kayu</a>
+                    <a href="herbal.html"><i class="fa-solid fa-leaf"></i> Herbal</a>
+                    <a href="nonkayu.html"><i class="fa-solid fa-spa"></i> Non Kayu</a>
+                    <a href="ekowisata.html"><i class="fa-solid fa-mountain-sun"></i> Ekowisata</a>
+                    <a href="pengelolaanhutan.html"><i class="fa-solid fa-earth-asia"></i> Pengelolaan Hutan</a>
+                    <a href="solusiberbasisalam.html"><i class="fa-solid fa-water"></i> Solusi Berbasis Alam</a>
+                </div>
+            </li>
+
+            <li class="mobile-dropdown">
+                <button type="button" class="mobile-dropdown-btn">
+                    <span><i class="fa-solid fa-newspaper"></i> Publikasi</span>
+                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </button>
+                <div class="mobile-submenu">
+                    <a href="publikasi.html" class="sub-main">Utama: Publikasi</a>
+                    <a href="pengumuman.html"><i class="fa-solid fa-bullhorn"></i> Pengumuman</a>
+                    <a href="suararimba.html"><i class="fa-solid fa-microphone-lines"></i> Suara Rimba</a>
+                </div>
+            </li>
+
+            <li><a href="layanan.html" class="mobile-link"><i class="fa-solid fa-handshake"></i> Layanan</a></li>
+            <li><a href="karir.html" class="mobile-link"><i class="fa-solid fa-user-graduate"></i> Karir</a></li>
+        </ul>
+    </div>
+</aside>
 
 <!-- OVERLAY BACKGROUND (TEPAT SEBELUM </body>) -->
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
