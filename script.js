@@ -518,50 +518,78 @@ const appLauncherBtn = document.getElementById("appLauncherBtn");
         };
     }
 });
-// =========================================================
-// LOGIKA BURGER MENU DRAWER & ACCORDION (SAMSUNG A04 OPTIMIZED)
-// =========================================================
+
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Integrasi Cuaca Real-time Pemalang
+    async function fetchPemalangWeather() {
+        try {
+            // Pemalang Coordinates: -6.8906, 109.3808
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-6.8906&longitude=109.3808&current_weather=true');
+            const data = await res.json();
+            if (data && data.current_weather) {
+                const temp = Math.round(data.current_weather.temperature);
+                const code = data.current_weather.weathercode;
+
+                document.getElementById('weatherTemp').textContent = `${temp}°C`;
+                
+                // Set Kondisi Cuaca & Icon
+                const weatherIcon = document.getElementById('weatherIcon');
+                const weatherDesc = document.getElementById('weatherDesc');
+
+                if (code === 0) {
+                    weatherDesc.textContent = "Cerah";
+                    weatherIcon.className = "fa-solid fa-sun weather-icon";
+                } else if (code >= 1 && code <= 3) {
+                    weatherDesc.textContent = "Berawan";
+                    weatherIcon.className = "fa-solid fa-cloud-sun weather-icon";
+                } else if (code >= 51 && code <= 67) {
+                    weatherDesc.textContent = "Hujan Gerimis";
+                    weatherIcon.className = "fa-solid fa-cloud-rain weather-icon";
+                } else if (code >= 80 && code <= 99) {
+                    weatherDesc.textContent = "Hujan";
+                    weatherIcon.className = "fa-solid fa-cloud-showers-heavy weather-icon";
+                } else {
+                    weatherDesc.textContent = "Berawan";
+                    weatherIcon.className = "fa-solid fa-cloud weather-icon";
+                }
+            }
+        } catch (err) {
+            console.log("Menggunakan cuaca default:", err);
+        }
+    }
+
+    fetchPemalangWeather();
+
+    // 2. Menu Burger Drawer Logic
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileNavDrawer = document.getElementById('mobileNavDrawer');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     const mobileDrawerClose = document.getElementById('mobileDrawerClose');
 
-    function openMobileDrawer() {
-        if (mobileNavDrawer && mobileMenuOverlay) {
-            mobileNavDrawer.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Kunci scroll halaman saat menu buka
-        }
+    function openDrawer() {
+        mobileNavDrawer.classList.add('active');
+        mobileMenuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    function closeMobileDrawer() {
-        if (mobileNavDrawer && mobileMenuOverlay) {
-            mobileNavDrawer.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Mengembalikan scroll
-        }
+    function closeDrawer() {
+        mobileNavDrawer.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
-    if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileDrawer);
-    if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeMobileDrawer);
-    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileDrawer);
+    if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openDrawer);
+    if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeDrawer);
+    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeDrawer);
 
-    // Fitur Accordion Submenu di HP (Bisa Buka-Tutup Submenu)
-    const mobileDropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
-    mobileDropdownBtns.forEach(btn => {
+    // Submenu Accordion Toggle
+    document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const parent = this.parentElement;
-
-            // Tutup dropdown lain yang terbuka agar rapi
             document.querySelectorAll('.mobile-dropdown').forEach(item => {
-                if (item !== parent) {
-                    item.classList.remove('open');
-                }
+                if (item !== parent) item.classList.remove('open');
             });
-
-            // Toggle item yang diklik
             parent.classList.toggle('open');
         });
     });
