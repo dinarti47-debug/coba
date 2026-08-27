@@ -519,19 +519,20 @@ const appLauncherBtn = document.getElementById("appLauncherBtn");
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mainNav = document.querySelector('.premium-nav') || document.querySelector('.nav-menu');
+    // 1. Cari Tombol Hamburger dan Navigasi Utama
+    const mobileToggle = document.getElementById('mobileMenuToggle') || document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('nav') || document.querySelector('.premium-nav') || document.querySelector('.nav-menu');
 
-    if (mobileMenuToggle && mainNav) {
-        // Toggle Buka/Tutup Menu 3 Garis di HP
-        mobileMenuToggle.addEventListener('click', (e) => {
+    if (mobileToggle && navMenu) {
+        // Event saat Tombol 3 Garis Diklik
+        mobileToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            mainNav.classList.toggle('mobile-active');
-            
-            // Ubah Icon dari 3 Garis (bars) ke Silang (xmark)
-            const icon = mobileMenuToggle.querySelector('i');
+            navMenu.classList.toggle('mobile-active');
+
+            // Ganti Ikon dari 3 Garis (bars) ke Silang (xmark)
+            const icon = mobileToggle.querySelector('i');
             if (icon) {
-                if (mainNav.classList.contains('mobile-active')) {
+                if (navMenu.classList.contains('mobile-active')) {
                     icon.className = 'fa-solid fa-xmark';
                 } else {
                     icon.className = 'fa-solid fa-bars';
@@ -539,31 +540,52 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Tutup menu saat klik area luar menu di HP
+        // Tutup menu otomatis jika area luar menu diklik
         document.addEventListener('click', (e) => {
-            if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                mainNav.classList.remove('mobile-active');
-                const icon = mobileMenuToggle.querySelector('i');
+            if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+                navMenu.classList.remove('mobile-active');
+                const icon = mobileToggle.querySelector('i');
                 if (icon) icon.className = 'fa-solid fa-bars';
             }
         });
     }
+
+    // 2. Handling untuk Sub-Menu / Dropdown (Tentang Kami, dll) di Layar HP
+    const menuItems = document.querySelectorAll('nav li, .premium-nav li, .nav-menu li');
+
+    menuItems.forEach(item => {
+        const subMenu = item.querySelector('ul, .dropdown-menu, .premium-menu');
+        const link = item.querySelector('a');
+
+        if (subMenu && link) {
+            link.addEventListener('click', (e) => {
+                // Hanya aktifkan toggle dropdown jika di layar HP (lebar <= 992px)
+                if (window.innerWidth <= 992) {
+                    // Jika href link bertanda "#" atau memiliki isi sub-menu
+                    if (link.getAttribute('href') === '#' || subMenu) {
+                        e.preventDefault();
+                        item.classList.toggle('active-dropdown');
+                    }
+                }
+            });
+        }
+    });
 });
 document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mainNav = document.getElementById('mainNav');
-    const dropdownHeaders = document.querySelectorAll('.dropdown-header');
+    // 1. Cari Tombol Hamburger dan Navigasi Utama
+    const mobileToggle = document.getElementById('mobileMenuToggle') || document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('nav') || document.querySelector('.premium-nav') || document.querySelector('.nav-menu');
 
-    // 1. Fungsi Klik Tombol 3 Garis (Hamburger)
-    if (mobileMenuToggle && mainNav) {
-        mobileMenuToggle.addEventListener('click', (e) => {
+    if (mobileToggle && navMenu) {
+        // Event saat Tombol 3 Garis Diklik
+        mobileToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            mainNav.classList.toggle('mobile-active');
-            
-            // Ganti ikon bars ke ikon X (close)
-            const icon = mobileMenuToggle.querySelector('i');
+            navMenu.classList.toggle('mobile-active');
+
+            // Ganti Ikon dari 3 Garis (bars) ke Silang (xmark)
+            const icon = mobileToggle.querySelector('i');
             if (icon) {
-                if (mainNav.classList.contains('mobile-active')) {
+                if (navMenu.classList.contains('mobile-active')) {
                     icon.className = 'fa-solid fa-xmark';
                 } else {
                     icon.className = 'fa-solid fa-bars';
@@ -571,27 +593,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Tutup menu jika mengklik di luar menu
+        // Tutup menu otomatis jika area luar menu diklik
         document.addEventListener('click', (e) => {
-            if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                mainNav.classList.remove('mobile-active');
-                const icon = mobileMenuToggle.querySelector('i');
+            if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+                navMenu.classList.remove('mobile-active');
+                const icon = mobileToggle.querySelector('i');
                 if (icon) icon.className = 'fa-solid fa-bars';
             }
         });
     }
 
-    // 2. Fungsi Buka/Tutup Sub-menu Dropdown di HP (Tentang Kami, Bisnis Kami, dll)
-    dropdownHeaders.forEach(header => {
-        header.addEventListener('click', (e) => {
-            // Jalankan hanya jika dalam tampilan layar HP (<= 992px)
-            if (window.innerWidth <= 992) {
-                e.preventDefault();
-                const parentItem = header.parentElement;
-                
-                // Toggle kelas 'open' untuk menampilkan/menyembunyikan sub-menu
-                parentItem.classList.toggle('open');
-            }
-        });
+    // 2. Handling untuk Sub-Menu / Dropdown (Tentang Kami, dll) di Layar HP
+    const menuItems = document.querySelectorAll('nav li, .premium-nav li, .nav-menu li');
+
+    menuItems.forEach(item => {
+        const subMenu = item.querySelector('ul, .dropdown-menu, .premium-menu');
+        const link = item.querySelector('a');
+
+        if (subMenu && link) {
+            link.addEventListener('click', (e) => {
+                // Hanya aktifkan toggle dropdown jika di layar HP (lebar <= 992px)
+                if (window.innerWidth <= 992) {
+                    // Jika href link bertanda "#" atau memiliki isi sub-menu
+                    if (link.getAttribute('href') === '#' || subMenu) {
+                        e.preventDefault();
+                        item.classList.toggle('active-dropdown');
+                    }
+                }
+            });
+        }
     });
 });
