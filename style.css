@@ -2035,3 +2035,59 @@ body {
         display: none !important;
     }
 }
+
+/* FORCE VISIBILITY UNTUK WIDGET CUACA DI HP (SAMSUNG A04) */
+@media screen and (max-width: 768px) {
+    /* Paksa container header actions muat rapat */
+    .header-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+    }
+
+    /* Paksa WIDGET CUACA muncul tanpa syarat */
+    header .header-actions .weather-widget,
+    .weather-widget {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 99 !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(74, 222, 128, 0.4) !important;
+        padding: 4px 8px !important;
+        border-radius: 12px !important;
+        margin: 0 2px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Menampilkan Ikon Cuaca */
+    .weather-widget .weather-icon,
+    .weather-widget #weatherIcon {
+        display: inline-block !important;
+        visibility: visible !important;
+        font-size: 0.85rem !important;
+        color: #4ade80 !important;
+        margin-right: 4px !important;
+    }
+
+    /* Menampilkan Teks Suhu (°C) */
+    .weather-widget .weather-info,
+    .weather-widget .temp,
+    .weather-widget #temperature {
+        display: inline-block !important;
+        visibility: visible !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        white-space: nowrap !important;
+    }
+
+    /* Sembunyikan hanya teks lokasi & deskripsi panjang agar tidak sempit */
+    .weather-widget .location,
+    .weather-widget #weatherDescription,
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
