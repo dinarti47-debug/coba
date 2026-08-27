@@ -549,3 +549,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mainNav = document.getElementById('mainNav');
+    const dropdownHeaders = document.querySelectorAll('.dropdown-header');
+
+    // 1. Fungsi Klik Tombol 3 Garis (Hamburger)
+    if (mobileMenuToggle && mainNav) {
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mainNav.classList.toggle('mobile-active');
+            
+            // Ganti ikon bars ke ikon X (close)
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon) {
+                if (mainNav.classList.contains('mobile-active')) {
+                    icon.className = 'fa-solid fa-xmark';
+                } else {
+                    icon.className = 'fa-solid fa-bars';
+                }
+            }
+        });
+
+        // Tutup menu jika mengklik di luar menu
+        document.addEventListener('click', (e) => {
+            if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mainNav.classList.remove('mobile-active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
+            }
+        });
+    }
+
+    // 2. Fungsi Buka/Tutup Sub-menu Dropdown di HP (Tentang Kami, Bisnis Kami, dll)
+    dropdownHeaders.forEach(header => {
+        header.addEventListener('click', (e) => {
+            // Jalankan hanya jika dalam tampilan layar HP (<= 992px)
+            if (window.innerWidth <= 992) {
+                e.preventDefault();
+                const parentItem = header.parentElement;
+                
+                // Toggle kelas 'open' untuk menampilkan/menyembunyikan sub-menu
+                parentItem.classList.toggle('open');
+            }
+        });
+    });
+});
