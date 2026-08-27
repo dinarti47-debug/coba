@@ -73,6 +73,16 @@
         </nav>
 
         <div class="header-actions">
+            <!-- Tombol Burger (Tampil di Layar HP) -->
+            <button type="button" id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Buka Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Tombol Kuis (Tunggal) -->
+            <button type="button" id="openQuizBtn" class="header-action" title="Kuis Edukasi Lingkungan">
+                <i class="fa-solid fa-puzzle-piece"></i>
+            </button>
+
             <!-- Search -->
             <div class="search-wrapper premium-search">
                 <button id="searchBtn" class="header-action" title="Cari">
@@ -84,7 +94,7 @@
                 </div>
             </div>
 
-            <!-- Weather Widget (Tampil Ringkas di HP dekat Search) -->
+            <!-- Weather Widget -->
             <div class="weather-widget" id="weatherWidget">
                 <div class="weather-icon">
                     <i id="weatherIcon" class="fa-solid fa-cloud-sun"></i>
@@ -92,21 +102,11 @@
                 <div class="weather-info">
                     <span class="temp">
                         <span id="temperature">--°C</span>
-                        <small id="weatherDescription" class="hide-on-mobile" data-i18n="weather_loading">Memuat cuaca...</small>
+                        <small id="weatherDescription" data-i18n="weather_loading">Memuat cuaca...</small>
                     </span>
-                    <span class="location hide-on-mobile" data-i18n="weather_loc">Pemalang, Jawa Tengah</span>
+                    <span class="location" data-i18n="weather_loc">Pemalang, Jawa Tengah</span>
                 </div>
             </div>
-
-            <!-- Tombol Kuis -->
-            <button type="button" id="openQuizBtn" class="header-action" title="Kuis Edukasi Lingkungan">
-                <i class="fa-solid fa-puzzle-piece"></i>
-            </button>
-
-            <!-- Tombol Burger Mobile (Dipindah ke Paling Kanan) -->
-            <button type="button" id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Buka Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
         </div>
     </div>
 </header>
