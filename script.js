@@ -518,8 +518,9 @@ const appLauncherBtn = document.getElementById("appLauncherBtn");
         };
     }
 });
+
 // ==========================================
-// LOGIKA MOBILE BURGER DRAWER & ACCORDION
+// LOGIKA BURGER MENU DRAWER & ACCORDION (HP)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -531,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(mobileNavDrawer && mobileMenuOverlay) {
             mobileNavDrawer.classList.add('active');
             mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Mencegah scroll background
+            document.body.style.overflow = 'hidden'; // Mencegah scroll layar
         }
     }
 
@@ -547,21 +548,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeMobileMenu);
     if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-    // Submenu Toggle (Accordion) di HP
+    // Toggle Submenu (Accordion)
     const mobileDropdowns = document.querySelectorAll('.mobile-dropdown-btn');
     mobileDropdowns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const parent = this.parentElement;
 
-            // Tutup accordion lain yang sedang terbuka
             document.querySelectorAll('.mobile-dropdown').forEach(item => {
                 if (item !== parent) {
                     item.classList.remove('open');
                 }
             });
 
-            // Toggle accordion yang diklik
             parent.classList.toggle('open');
         });
     });
