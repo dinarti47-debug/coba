@@ -2035,3 +2035,59 @@ body {
         display: none !important;
     }
 }
+/* 1. TAMPILAN NORMAL HP PORTRAIT (Tegak) */
+.weather-widget {
+    display: none !important; /* Sembunyikan bawaan desktop */
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    /* Munculkan widget cuaca ringkas khusus HP Portrait di kanan */
+    .weather-widget.mobile-only-right {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        padding: 4px 8px !important;
+        background: rgba(255, 255, 255, 0.12) !important;
+        border: 1px solid rgba(74, 222, 128, 0.3) !important;
+        border-radius: 12px !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+    }
+}
+
+/* 2. TAMPILAN HP LANDSCAPE (Miring) - SAMA PERSIS KAYA LAPTOP */
+@media screen and (orientation: landscape) and (max-height: 500px), screen and (min-width: 992px) {
+    /* Sembunyikan tombol burger & elemen khusus mobile portrait */
+    .mobile-menu-toggle,
+    .mobile-only-right {
+        display: none !important;
+    }
+
+    /* Paksa Navigasi Menu Utama Laptop MUNCUL */
+    .premium-nav {
+        display: flex !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+
+    /* Paksa Widget Cuaca Asli Desktop MUNCUL UTUH (Ada Ikon, Temp, & Deskripsi) */
+    .weather-widget,
+    .weather-widget .hide-on-mobile,
+    .brand-copy small {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Tampilan Container Header Kembali seperti Laptop */
+    .header-inner {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0 20px !important;
+    }
+
+    .brand-premium small {
+        display: block !important; /* Teks KPH PEMALANG di logo muncul kembali */
+    }
+}
