@@ -480,29 +480,29 @@
         </div>
     </div>
 </div>
-<!-- TAB ELEMEN HEADER (Tambahkan tombol hamburger ini di dalam <header> / navbar Anda) -->
-<button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Buka Menu">
-    <i class="fa-solid fa-bars"></i>
-</button>
 
-
-<!-- ========================================================= -->
-<!-- TARUH BAGIAN DI BAWAH INI TEPAT SEBELUM TAG </body>       -->
-<!-- ========================================================= -->
-
-<!-- Widget Cuaca Versi HP / Mobile -->
-<div class="mobile-weather-bar">
-    <div class="mobile-weather-content">
-        <i class="fa-solid fa-cloud-sun weather-icon"></i>
-        <span class="weather-temp">29°C</span>
-        <span class="weather-location">Pemalang, ID</span>
+<!-- Top Fixed Bar (Cuaca & Hamburger Menu) -->
+<div class="top-fixed-bar">
+    <!-- Weather Widget (Gaya Google Maps Mobile) -->
+    <div class="mobile-weather-pill" id="weatherPill">
+        <i class="fa-solid fa-cloud-sun weather-icon" id="weatherIcon"></i>
+        <div class="weather-text">
+            <span class="weather-temp" id="weatherTemp">27°C</span>
+            <span class="weather-desc" id="weatherDesc">Berawan</span>
+        </div>
+        <span class="weather-loc">Pemalang</span>
     </div>
+
+    <!-- Tombol Burger Navigation -->
+    <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Buka Menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 </div>
 
-<!-- Overlay Background Hitam Transparan -->
+<!-- Overlay Background -->
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
-<!-- Mobile Drawer Navigation -->
+<!-- Mobile Drawer Navigation (Menu Lengkap) -->
 <aside class="mobile-nav-drawer" id="mobileNavDrawer">
     <div class="mobile-drawer-header">
         <div class="mobile-brand">
@@ -516,13 +516,8 @@
 
     <div class="mobile-drawer-body">
         <ul class="mobile-nav-list">
-            <!-- Beranda -->
-            <li>
-                <a href="index.html" class="mobile-link active">
-                    <span><i class="fa-solid fa-house"></i> Beranda</span>
-                </a>
-            </li>
-
+            <li><a href="index.html" class="mobile-link active"><i class="fa-solid fa-house"></i> Beranda</a></li>
+            
             <!-- Accordion: Tentang Kami -->
             <li class="mobile-dropdown">
                 <button type="button" class="mobile-dropdown-btn">
@@ -571,19 +566,8 @@
                 </div>
             </li>
 
-            <!-- Layanan -->
-            <li>
-                <a href="layanan.html" class="mobile-link">
-                    <span><i class="fa-solid fa-handshake"></i> Layanan</span>
-                </a>
-            </li>
-
-            <!-- Karir -->
-            <li>
-                <a href="karir.html" class="mobile-link">
-                    <span><i class="fa-solid fa-user-graduate"></i> Karir</span>
-                </a>
-            </li>
+            <li><a href="layanan.html" class="mobile-link"><i class="fa-solid fa-handshake"></i> Layanan</a></li>
+            <li><a href="karir.html" class="mobile-link"><i class="fa-solid fa-user-graduate"></i> Karir</a></li>
         </ul>
     </div>
 </aside>
