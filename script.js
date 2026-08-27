@@ -518,50 +518,50 @@ const appLauncherBtn = document.getElementById("appLauncherBtn");
         };
     }
 });
-// ==========================================
-// LOGIKA MOBILE BURGER DRAWER & ACCORDION
-// ==========================================
+// =========================================================
+// LOGIKA BURGER MENU DRAWER & ACCORDION (SAMSUNG A04 OPTIMIZED)
+// =========================================================
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileNavDrawer = document.getElementById('mobileNavDrawer');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     const mobileDrawerClose = document.getElementById('mobileDrawerClose');
 
-    function openMobileMenu() {
-        if(mobileNavDrawer && mobileMenuOverlay) {
+    function openMobileDrawer() {
+        if (mobileNavDrawer && mobileMenuOverlay) {
             mobileNavDrawer.classList.add('active');
             mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Mencegah scroll background
+            document.body.style.overflow = 'hidden'; // Kunci scroll halaman saat menu buka
         }
     }
 
-    function closeMobileMenu() {
-        if(mobileNavDrawer && mobileMenuOverlay) {
+    function closeMobileDrawer() {
+        if (mobileNavDrawer && mobileMenuOverlay) {
             mobileNavDrawer.classList.remove('active');
             mobileMenuOverlay.classList.remove('active');
             document.body.style.overflow = ''; // Mengembalikan scroll
         }
     }
 
-    if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileMenu);
-    if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeMobileMenu);
-    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileDrawer);
+    if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeMobileDrawer);
+    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileDrawer);
 
-    // Submenu Toggle (Accordion) di HP
-    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown-btn');
-    mobileDropdowns.forEach(btn => {
+    // Fitur Accordion Submenu di HP (Bisa Buka-Tutup Submenu)
+    const mobileDropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
+    mobileDropdownBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const parent = this.parentElement;
 
-            // Tutup accordion lain yang sedang terbuka
+            // Tutup dropdown lain yang terbuka agar rapi
             document.querySelectorAll('.mobile-dropdown').forEach(item => {
                 if (item !== parent) {
                     item.classList.remove('open');
                 }
             });
 
-            // Toggle accordion yang diklik
+            // Toggle item yang diklik
             parent.classList.toggle('open');
         });
     });
