@@ -566,13 +566,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Pastikan elemen cuaca diisi angka default dulu saat pertama kali dibaca HP
-document.addEventListener("DOMContentLoaded", function () {
-    const tempElement = document.getElementById("temperature");
-    const iconElement = document.getElementById("weatherIcon");
-
-    if (tempElement && (tempElement.innerText === "--°C" || tempElement.innerText === "")) {
-        // Tampilkan nilai default dulu supaya tidak kosong di layar Samsung
-        tempElement.innerText = "30°C"; 
-    }
-});
