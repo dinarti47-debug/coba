@@ -1975,3 +1975,63 @@ body {
         background: rgba(74, 222, 128, 0.1);
     }
 }
+
+/* POSISI WIDGET CUACA DI POJOK KIRI */
+.weather-widget.mobile-force-left,
+.weather-widget {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 4px 10px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(74, 222, 128, 0.3) !important;
+    border-radius: 20px !important;
+    margin-left: 10px !important;
+    margin-right: auto !important; /* Mendorong elemen lain ke kanan */
+}
+
+/* Khusus Tampilan HP Portrait (Samsung A04 / Mobile) */
+@media screen and (max-width: 768px) {
+    .header-inner {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 10px !important;
+    }
+
+    /* Memperkecil sedikit logo & tulisan di HP agar cuaca muat di kiri */
+    .brand-premium {
+        gap: 6px !important;
+    }
+    
+    .brand-copy small {
+        display: none !important; /* Sembunyikan teks KPH PEMALANG kecil di logo jika layar terlalu sempit */
+    }
+
+    /* Widget Cuaca Ringkas di Kiri */
+    .weather-widget.mobile-force-left {
+        margin-left: 6px !important;
+        margin-right: auto !important;
+        padding: 3px 8px !important;
+    }
+
+    .weather-widget .weather-icon,
+    .weather-widget #weatherIcon {
+        font-size: 0.85rem !important;
+        color: #4ade80 !important;
+    }
+
+    .weather-widget .temp,
+    .weather-widget #temperature {
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+    }
+
+    /* Sembunyikan deskripsi panjang di HP agar hemat ruang */
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
